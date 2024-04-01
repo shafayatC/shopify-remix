@@ -88,6 +88,9 @@ export default function Index() {
         <button variant="primary" onClick={generateProduct}>
           Generate a product
         </button>
+        <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
       </ui-title-bar>
       <BlockStack gap="500">
         <Layout>

@@ -6,8 +6,21 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import stylesheet from "./tailwind.css?url";
+import { createContext, useState } from "react";
+import { LiveReload } from "./components/LiveReload";
+
+export const links = () => [
+  { rel: "stylesheet", href: stylesheet },
+];
+
+export const OrderContextManager = createContext();
+
 export default function App() {
+  const [getServiceTypeId, setServiceTypeId] = useState("Im context api service id")
+
   return (
+    <>
     <html>
       <head>
         <meta charSet="utf-8" />
@@ -20,11 +33,15 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body> 
+      <OrderContextManager.Provider value={[getServiceTypeId, setServiceTypeId]}>
         <Outlet />
         <ScrollRestoration />
+        <LiveReload port={8002} />
         <Scripts />
+        </OrderContextManager.Provider>
       </body>
     </html>
+    </>
   );
 }
